@@ -1,16 +1,13 @@
 {
   description = "A collection of flake templates";
 
-  inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-unstable";
-  };
-
   outputs =
-    { self, nixpkgs }:
+    { self }:
     {
 
       templates = {
-        default = null;
+        default = self.templates.python;
+
         qmk = {
           path = ./qmk;
           description = "build keyboard firmware using QMK";
