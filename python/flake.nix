@@ -14,12 +14,14 @@
       {
         devShells.default = pkgs.mkShell {
           packages = with pkgs; [
-            python3
+            python312
             uv
           ];
           shellHook = ''
             echo "uv version: $(uv --version)"
             echo "python version: $(python --version)"
+            uv venv --no-managed-python --no-python-downloads --allow-existing
+            source .venv/bin/activate
           '';
         };
       }
