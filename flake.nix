@@ -1,15 +1,25 @@
 {
-  description = "A very basic flake";
+  description = "A collection of flake templates";
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-unstable";
   };
 
-  outputs = { self, nixpkgs }: {
+  outputs =
+    { self, nixpkgs }:
+    {
 
-    packages.x86_64-linux.hello = nixpkgs.legacyPackages.x86_64-linux.hello;
+      templates = {
+        default = null;
+        qmk = {
+          path = ./qmk;
+          description = "build keyboard firmware using QMK";
+        };
 
-    packages.x86_64-linux.default = self.packages.x86_64-linux.hello;
-
-  };
+        python = {
+          path = ./python;
+          description = "easy python project setup using uv";
+        };
+      };
+    };
 }
